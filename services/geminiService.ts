@@ -1,13 +1,26 @@
+
 import { GoogleGenAI, Type } from "@google/genai";
 import { Language, GeneratedQuestion } from '../types';
 
+// FIX: Per coding guidelines, the API key must be obtained from process.env.API_KEY. This also resolves the TypeScript error.
 const API_KEY = process.env.API_KEY;
 
-if (!API_KEY) {
-  console.warn("API_KEY environment variable not set. Gemini features will not work.");
-}
+// Use a function to get the AI instance, initializing it only once.
+// This prevents the app from crashing on startup if the API key is missing.
+const getAi = (() => {
+  let ai: GoogleGenAI | null = null;
+  return () => {
+    if (ai) return ai;
+    if (API_KEY) {
+      ai = new GoogleGenAI({ apiKey: API_KEY });
+      return ai;
+    }
+    // FIX: Update the warning message to reflect the correct variable name.
+    console.warn("API_KEY environment variable not set. Gemini features will not work.");
+    return null;
+  };
+})();
 
-const ai = new GoogleGenAI({ apiKey: API_KEY! });
 const model = 'gemini-2.5-flash';
 
 const quizSchema = {
@@ -26,7 +39,8 @@ const quizSchema = {
 };
 
 export const explainSimply = async (topic: string, query: string, language: Language): Promise<string> => {
-  if(!API_KEY) return "Gemini API key is not configured.";
+  const ai = getAi();
+  if(!ai) return "Gemini API key is not configured.";
   const langInstruction = language === 'ta' ? 'in simple Tamil' : 'in simple English';
   
   const prompt = `You are an expert teacher for first-generation learners in Tamil Nadu, India.
@@ -44,7 +58,8 @@ export const explainSimply = async (topic: string, query: string, language: Lang
 };
 
 export const generateQuizQuestion = async (topic: string, language: Language): Promise<GeneratedQuestion | string> => {
-  if(!API_KEY) return "Gemini API key is not configured.";
+  const ai = getAi();
+  if(!ai) return "Gemini API key is not configured.";
   const langInstruction = language === 'ta' ? 'Tamil' : 'English';
 
   const prompt = `You are an expert teacher creating a single, high-quality multiple-choice practice question for a student in Tamil Nadu.
@@ -70,7 +85,8 @@ export const generateQuizQuestion = async (topic: string, language: Language): P
 };
 
 export const summarizeTopic = async (topic: string, language: Language): Promise<string> => {
-  if(!API_KEY) return "Gemini API key is not configured.";
+  const ai = getAi();
+  if(!ai) return "Gemini API key is not configured.";
   const langInstruction = language === 'ta' ? 'in Tamil' : 'in English';
 
   const prompt = `You are an expert teacher helping a student revise.
@@ -88,16 +104,19 @@ export const summarizeTopic = async (topic: string, language: Language): Promise
 };
 
 export const getChatbotResponse = async (chatHistory: { role: string, parts: { text: string }[] }[], userMessage: string, language: Language): Promise<string> => {
-    if(!API_KEY) return "Gemini API key is not configured.";
+    const ai = getAi();
+    if(!ai) return "Gemini API key is not configured.";
     const langInstruction = language === 'ta' ? 'Respond in Tamil.' : 'Respond in English.';
 
     const systemInstruction = `You are a friendly and motivational AI study buddy for a student in Tamil Nadu using the 'Samathuva Kalvi' app. Your name is 'Kalvi Nanban' (Education Friend).
+    The 'Samathuva Kalvi' app was created by passionate students from Thiagarajar College of Engineering, Madurai: Anbu Pravin, Ameetesh, and Satheesh. Their goal is to provide free, high-quality education to government school students in Tamil Nadu.
     Your primary roles are:
     1.  **Motivate:** Always be positive and encouraging. If the student feels down, provide motivational quotes or words of encouragement.
     2.  **Guide:** Help the student with study strategies, like the Pomodoro technique, or how to approach difficult subjects.
     3.  **Schedule:** If a student asks for help with a study plan, ask them which subjects they want to study and for how long, then provide a simple, easy-to-follow schedule. Do not ask for their personal schedule, just create a generic one based on their input.
-    4.  **Answer General Questions:** Answer general knowledge questions, but always try to relate them back to learning if possible. Avoid answering questions that are too personal or inappropriate.
-    5.  **Be Concise:** Keep your answers brief and to the point. Use simple language.
+    4.  **Answer App Questions:** Answer questions about the app, its creators (Anbu Pravin, Ameetesh, Satheesh from TCE Madurai), and its mission.
+    5.  **Answer General Questions:** Answer general knowledge questions, but always try to relate them back to learning if possible. Avoid answering questions that are too personal or inappropriate.
+    6.  **Be Concise:** Keep your answers brief and to the point. Use simple language.
     ${langInstruction}`;
 
     const contents = [...chatHistory, { role: 'user', parts: [{ text: userMessage }] }];
