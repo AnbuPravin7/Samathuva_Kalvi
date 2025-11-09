@@ -125,7 +125,8 @@ const StudyBuddy: React.FC<StudyBuddyProps> = ({ lessonTopic }) => {
     }> = ({ labelEn, labelTa, targetMode }) => (
     <button
         onClick={() => handleModeChange(targetMode)}
-        className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-800 ${mode === targetMode ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-300 hover:bg-slate-700/50'}`}
+        disabled={isLoading}
+        className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-800 ${mode === targetMode ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-300 hover:bg-slate-700/50'} ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
     >
         {language === 'en' ? labelEn : labelTa}
     </button>
@@ -169,6 +170,25 @@ const StudyBuddy: React.FC<StudyBuddyProps> = ({ lessonTopic }) => {
             </button>
          </div>
       )}
+
+      {mode === 'summarize' && (
+         <div className="animate-fade-in text-center min-h-[50px] flex items-center justify-center">
+            <p className="text-sm text-slate-400">
+              {isLoading 
+                ? (language === 'en' 
+                    ? `Generating a summary for "${lessonTopic}"...` 
+                    : `"${lessonTopic}" என்பதற்கான சுருக்கம் உருவாக்கப்படுகிறது...`)
+                : (response 
+                    ? (language === 'en'
+                        ? 'The summary is displayed below. Click Summarize again to regenerate.'
+                        : 'சுருக்கம் கீழே காட்டப்பட்டுள்ளது. மீண்டும் உருவாக்க, சுருக்கம் பொத்தானை மீண்டும் கிளிக் செய்யவும்.')
+                    : ''
+                  )
+              }
+            </p>
+         </div>
+      )}
+
 
       {(isLoading || response) && (
         <div ref={responseRef} className="mt-4 pt-4 border-t border-white/10">
