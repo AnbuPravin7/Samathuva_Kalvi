@@ -7,6 +7,7 @@ import LessonView from './components/LessonView';
 import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
 import AIChatbot from './components/AIChatbot';
+import DashboardPage from './components/DashboardPage';
 
 type AppContextType = {
   language: Language;
@@ -23,8 +24,8 @@ const App: React.FC = () => {
 
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
-  
-  // The user's grade is set on login and used to fetch the correct courses.
+  const [currentView, setCurrentView] = useState<'main' | 'dashboard'>('main');
+
   const userGrade = user?.grade || 10;
   const { courses } = useMockData(userGrade);
 
@@ -38,8 +39,8 @@ const App: React.FC = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
-  const handleLogin = (loggedInUser: User) => {
-    setUser(loggedInUser);
+  const handleLogin = (loggedInUser: Omit<User, 'completedLessons'>) => {
+    setUser({ ...loggedInUser, completedLessons: [] });
     setIsLoggedIn(true);
   };
 
@@ -48,6 +49,7 @@ const App: React.FC = () => {
     setIsLoggedIn(false);
     setSelectedCourse(null);
     setSelectedLesson(null);
+    setCurrentView('main');
   };
 
   const handleCourseSelect = (course: Course) => {
@@ -64,15 +66,28 @@ const App: React.FC = () => {
       setSelectedLesson(null);
     } else if (selectedCourse) {
       setSelectedCourse(null);
+    } else if (currentView === 'dashboard') {
+        setCurrentView('main');
     }
   };
   
+  const handleMarkLessonAsComplete = (lessonId: string) => {
+    setUser(currentUser => {
+        if (!currentUser || currentUser.completedLessons.includes(lessonId)) {
+            return currentUser;
+        }
+        return {
+            ...currentUser,
+            completedLessons: [...currentUser.completedLessons, lessonId],
+        };
+    });
+  };
+
   const scrollToSection = (section: 'home' | 'about' | 'contact') => {
-    // If we are in a course or lesson view, first go back to the homepage
+    setCurrentView('main');
     if (selectedCourse || selectedLesson) {
         setSelectedCourse(null);
         setSelectedLesson(null);
-        // Allow DOM to update before scrolling
         setTimeout(() => {
             const ref = section === 'home' ? homeRef : section === 'about' ? aboutRef : contactRef;
             ref.current?.scrollIntoView({ behavior: 'smooth' });
@@ -85,11 +100,17 @@ const App: React.FC = () => {
 
 
   const renderContent = () => {
-    if (selectedLesson && selectedCourse) {
+    if (currentView === 'dashboard' && user) {
+        return <DashboardPage user={user} courses={courses} onBack={handleBack} onLogout={handleLogout} />;
+    }
+
+    if (selectedLesson && selectedCourse && user) {
        return <LessonView 
           lesson={selectedLesson} 
           courseTitle={selectedCourse.title[language]}
-          onBack={handleBack} 
+          onBack={handleBack}
+          completedLessons={user.completedLessons}
+          onMarkLessonAsComplete={handleMarkLessonAsComplete}
         />
     }
     if (selectedCourse) {
@@ -99,7 +120,6 @@ const App: React.FC = () => {
           onBack={handleBack}
         />
     }
-    // The main view is now the single, scrollable HomePage
     return <HomePage 
         courses={courses} 
         onCourseSelect={handleCourseSelect}
@@ -114,8 +134,7 @@ const App: React.FC = () => {
   return (
     <AppContext.Provider value={contextValue}>
       <div className="min-h-screen font-sans">
-        <Navbar onLogout={handleLogout} scrollToSection={scrollToSection} />
-        {/* pt-20 ensures content starts below the fixed navbar */}
+        <Navbar scrollToSection={scrollToSection} showDashboard={() => setCurrentView('dashboard')} />
         <main className="pt-20"> 
           <div className="p-4 sm:p-6 md:p-8">
             {renderContent()}

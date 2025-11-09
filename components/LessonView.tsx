@@ -7,12 +7,16 @@ interface LessonViewProps {
   lesson: Lesson;
   courseTitle: string;
   onBack: () => void;
+  completedLessons: string[];
+  onMarkLessonAsComplete: (lessonId: string) => void;
 }
 
-const LessonView: React.FC<LessonViewProps> = ({ lesson, courseTitle, onBack }) => {
+const LessonView: React.FC<LessonViewProps> = ({ lesson, courseTitle, onBack, completedLessons, onMarkLessonAsComplete }) => {
   const context = useContext(AppContext);
   if (!context) return null;
   const { language } = context;
+
+  const isCompleted = completedLessons.includes(lesson.id);
 
   return (
     <div className="animate-fade-in">
@@ -28,7 +32,6 @@ const LessonView: React.FC<LessonViewProps> = ({ lesson, courseTitle, onBack }) 
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            {/* YouTube Video Player */}
             <div className="aspect-video bg-black rounded-xl shadow-2xl overflow-hidden border-2 border-indigo-500/50 mb-6">
               <iframe
                 width="100%"
@@ -39,6 +42,27 @@ const LessonView: React.FC<LessonViewProps> = ({ lesson, courseTitle, onBack }) 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
+            </div>
+            
+            <div className="flex justify-end mb-6">
+                 <button
+                    onClick={() => onMarkLessonAsComplete(lesson.id)}
+                    disabled={isCompleted}
+                    className={`px-6 py-2.5 font-bold text-white rounded-lg transition-all duration-300 flex items-center gap-2 transform hover:scale-105 ${
+                        isCompleted
+                        ? 'bg-green-600/80 cursor-not-allowed'
+                        : 'bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700'
+                    }`}
+                >
+                    {isCompleted ? (
+                        <>
+                            <i className="fas fa-check-circle"></i>
+                            {language === 'en' ? 'Completed' : 'முடிந்தது'}
+                        </>
+                    ) : (
+                        language === 'en' ? 'Mark as Completed' : 'முடித்ததாகக் குறி'
+                    )}
+                </button>
             </div>
 
             <div className="bg-slate-800/50 backdrop-blur-md border border-white/10 p-6 rounded-2xl shadow-lg">

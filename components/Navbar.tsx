@@ -1,12 +1,11 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppContext } from '../App';
 import { Language } from '../types';
 import Logo from './Logo';
-import ProfileDropdown from './ProfileDropdown';
 
 interface NavbarProps {
-  onLogout: () => void;
   scrollToSection: (section: 'home' | 'about' | 'contact') => void;
+  showDashboard: () => void;
 }
 
 const LanguageToggle: React.FC = () => {
@@ -35,22 +34,10 @@ const LanguageToggle: React.FC = () => {
   );
 };
 
-const Navbar: React.FC<NavbarProps> = ({ onLogout, scrollToSection }) => {
+const Navbar: React.FC<NavbarProps> = ({ scrollToSection, showDashboard }) => {
   const context = useContext(AppContext);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const profileRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
-        setIsProfileOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-  
   const handleMobileNavClick = (section: 'home' | 'about' | 'contact') => {
       scrollToSection(section);
       setIsMobileMenuOpen(false);
@@ -72,11 +59,14 @@ const Navbar: React.FC<NavbarProps> = ({ onLogout, scrollToSection }) => {
 
         <div className="flex items-center gap-2 sm:gap-4">
           <LanguageToggle />
-          <div className="relative" ref={profileRef}>
-             <button onClick={() => setIsProfileOpen(prev => !prev)} className="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center font-bold text-white border-2 border-white/50 hover:ring-2 hover:ring-indigo-400 transition-all">
+          <div className="relative">
+             <button 
+                onClick={showDashboard} 
+                className="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center font-bold text-white border-2 border-white/50 hover:ring-2 hover:ring-indigo-400 transition-all"
+                aria-label="Open Dashboard"
+             >
                   {context?.user?.name.charAt(0).toUpperCase()}
               </button>
-              {isProfileOpen && <ProfileDropdown onLogout={onLogout} />}
           </div>
           <div className="md:hidden">
               <button onClick={() => setIsMobileMenuOpen(prev => !prev)} className="text-2xl">

@@ -22,7 +22,7 @@ export interface Lesson {
 }
 
 export interface Course {
-  id: string;
+  id:string;
   title: BilingualString;
   subject: 'Maths' | 'Science' | 'Physics' | 'Chemistry' | 'Biology' | 'Computer Science' | 'English' | 'Tamil' | 'Social Science' | 'Commerce' | 'Accountancy' | 'Computer Applications';
   grade: Grade;
@@ -41,4 +41,5 @@ export interface User {
   name: string;
   email: string;
   grade: Grade;
+  completedLessons: string[];
 }
