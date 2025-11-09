@@ -1,6 +1,7 @@
-import React, { useState, createContext, useMemo, useRef } from 'react';
-import { Course, Lesson, Language, User } from './types';
+import React, { useState, createContext, useMemo, useRef, useEffect } from 'react';
+import { Course, Lesson, Language, User, Grade } from './types';
 import { useMockData } from './hooks/useMockData';
+import { getUsers, saveUsers, getSession, setSession, clearSession } from './services/database';
 import Navbar from './components/Navbar';
 import CourseView from './components/CourseView';
 import LessonView from './components/LessonView';
@@ -29,6 +30,15 @@ const App: React.FC = () => {
   const userGrade = user?.grade || 10;
   const { courses } = useMockData(userGrade);
 
+  useEffect(() => {
+    // Check if a user session exists
+    const sessionUser = getSession();
+    if (sessionUser) {
+        setUser(sessionUser);
+        setIsLoggedIn(true);
+    }
+  }, []);
+
   const contextValue = useMemo(() => ({
     language,
     setLanguage,
@@ -38,10 +48,38 @@ const App: React.FC = () => {
   const homeRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
+  
+  const handleSignup = (newUser: Omit<User, 'completedLessons'> & { password?: string }): { success: boolean, message: string } => {
+    const users = getUsers();
+    const existingUser = users.find((u) => u.email === newUser.email);
 
-  const handleLogin = (loggedInUser: Omit<User, 'completedLessons'>) => {
-    setUser({ ...loggedInUser, completedLessons: [] });
-    setIsLoggedIn(true);
+    if (existingUser) {
+        return { success: false, message: 'An account with this email already exists.' };
+    }
+    
+    const userToStore = { ...newUser, completedLessons: [] };
+    users.push(userToStore);
+    saveUsers(users);
+
+    return { success: true, message: 'Account created successfully! Please sign in.' };
+  };
+
+  const handleLogin = (credentials: {email: string, password?: string}): { success: boolean, message: string } => {
+    const { email, password } = credentials;
+    const users = getUsers();
+    const foundUser = users.find((u: any) => u.email === email && u.password === password);
+    
+    if (foundUser) {
+      // Don't keep password in the state
+      const { password, ...userToSet } = foundUser;
+      setUser(userToSet);
+      setIsLoggedIn(true);
+      // Persist session
+      setSession(userToSet);
+      return { success: true, message: 'Logged in successfully.' };
+    }
+
+    return { success: false, message: 'Invalid email or password.' };
   };
 
   const handleLogout = () => {
@@ -50,6 +88,7 @@ const App: React.FC = () => {
     setSelectedCourse(null);
     setSelectedLesson(null);
     setCurrentView('main');
+    clearSession();
   };
 
   const handleCourseSelect = (course: Course) => {
@@ -76,10 +115,26 @@ const App: React.FC = () => {
         if (!currentUser || currentUser.completedLessons.includes(lessonId)) {
             return currentUser;
         }
-        return {
+        const updatedUser: User = {
             ...currentUser,
             completedLessons: [...currentUser.completedLessons, lessonId],
         };
+        
+        // Update session storage with the new user state
+        setSession(updatedUser);
+        
+        // Persist the change to our main user list in localStorage
+        const allUsers = getUsers();
+        const userIndex = allUsers.findIndex(u => u.email === updatedUser.email);
+        if (userIndex > -1) {
+            allUsers[userIndex] = {
+                ...allUsers[userIndex], // This preserves the password
+                ...updatedUser
+            };
+            saveUsers(allUsers);
+        }
+
+        return updatedUser;
     });
   };
 
@@ -128,7 +183,7 @@ const App: React.FC = () => {
   }
 
   if (!isLoggedIn) {
-    return <LoginPage onLogin={handleLogin} />;
+    return <LoginPage onLogin={handleLogin} onSignup={handleSignup} />;
   }
   
   return (
