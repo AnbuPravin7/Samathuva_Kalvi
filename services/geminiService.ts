@@ -1,4 +1,5 @@
 
+
 import { GoogleGenAI, Type } from "@google/genai";
 import { Language, GeneratedQuestion } from '../types';
 
@@ -103,7 +104,7 @@ export const summarizeTopic = async (topic: string, language: Language): Promise
   }
 };
 
-export const getChatbotResponse = async (chatHistory: { role: string, parts: { text: string }[] }[], userMessage: string, language: Language): Promise<string> => {
+export const getChatbotResponse = async (chatHistory: { role: string, parts: { text: string }[] }[], language: Language): Promise<string> => {
     const ai = getAi();
     if(!ai) return "Gemini API key is not configured.";
     const langInstruction = language === 'ta' ? 'Respond in Tamil.' : 'Respond in English.';
@@ -119,7 +120,7 @@ export const getChatbotResponse = async (chatHistory: { role: string, parts: { t
     6.  **Be Concise:** Keep your answers brief and to the point. Use simple language.
     ${langInstruction}`;
 
-    const contents = [...chatHistory, { role: 'user', parts: [{ text: userMessage }] }];
+    const contents = chatHistory;
 
     try {
         const response = await ai.models.generateContent({

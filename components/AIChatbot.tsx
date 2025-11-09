@@ -23,7 +23,7 @@ const AIChatbot: React.FC = () => {
                 : "வணக்கம்! நான் கல்வி நண்பன், உங்கள் AI படிப்பு நண்பன். இன்று நான் உங்களுக்கு எப்படி உதவ முடியும்? நான் உங்களை ஊக்குவிக்கவோ அல்லது படிப்பு அட்டவணையை உருவாக்கவோ உதவ முடியும்!";
             setChatHistory([{ role: 'model', parts: [{ text: firstMessage }] }]);
         }
-    }, [isOpen, context?.language]);
+    }, [isOpen, context?.language, chatHistory.length]);
 
     useEffect(() => {
         // Scroll to bottom of chat on new message
@@ -40,11 +40,13 @@ const AIChatbot: React.FC = () => {
         if (!userInput.trim()) return;
 
         const newUserMessage: ChatMessage = { role: 'user', parts: [{ text: userInput }] };
-        setChatHistory(prev => [...prev, newUserMessage]);
+        const updatedChatHistory = [...chatHistory, newUserMessage];
+        
+        setChatHistory(updatedChatHistory);
         setUserInput('');
         setIsLoading(true);
 
-        const response = await getChatbotResponse(chatHistory, userInput, language);
+        const response = await getChatbotResponse(updatedChatHistory, language);
         const newModelMessage: ChatMessage = { role: 'model', parts: [{ text: response }] };
         setChatHistory(prev => [...prev, newModelMessage]);
         setIsLoading(false);
