@@ -98,6 +98,32 @@
         opacity: 0;
         pointer-events: none;
     }
+    
+    /* Modal styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease-out;
+    }
+    .modal-content {
+      background-color: #1e293b; /* slate-800 */
+      padding: 2rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      animation: slideInUp 0.4s ease-out forwards;
+    }
   </style>
 </head>
   <body class="text-slate-200">

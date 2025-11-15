@@ -185,7 +185,7 @@ const allCourses: Course[] = [
    {
     id: '12-tamil', grade: 12, subject: 'Tamil', title: { en: 'Tamil', ta: 'தமிழ்' }, icon: 'fa-feather-alt',
     lessons: [
-      { id: '12t-l1', title: { en: 'Ilaiya Thagaimaikku', ta: 'இளைய தகைமைக்கு' }, videoId: '7p5S1_8e8-I', resources: [], description: { en: 'A poem addressing the youth.', ta: 'இளைஞர்களை நோக்கிய ஒரு கவிதை.' } },
+      { id: '12t-l1', title: { en: 'Ilaiya Thagaimaikku', ta: 'இளைய தகைமைக்கு' }, videoId: 'Yw4pB4i_p2w', resources: [], description: { en: 'A poem addressing the youth.', ta: 'இளைஞர்களை நோக்கிய ஒரு கவிதை.' } },
       { id: '12t-l2', title: { en: 'Grammar: Uyir, Mei Ezhuthukkal', ta: 'இலக்கணம்: உயிர், மெய் எழுத்துக்கள்' }, videoId: '2q076e-pyuY', resources: [], description: { en: 'Detailed study of vowels and consonants.', ta: 'உயிர் மற்றும் மெய் எழுத்துக்கள் பற்றிய விரிவான ஆய்வு.' } },
       { id: '12t-l3', title: { en: 'Kamba Ramayanam - Ayothya Kandam', ta: 'கம்ப ராமாயணம் - அயோத்தியா காண்டம்' }, videoId: 'Y9j2F_n4p3E', resources: [], description: { en: 'Exploring the Ayodhya chapter of Kambar\'s epic.', ta: 'கம்பரின் காவியத்தின் அயோத்தியா காண்டத்தை ஆராய்தல்.' } },
       { id: '12t-l4', title: { en: 'Prose: Paarathiyar', ta: 'உரைநடை: பாரதியார்' }, videoId: 'f5f0W_i_9m4', resources: [], description: { en: 'Life and works of the great poet Subramania Bharati.', ta: 'மகாகவி சுப்ரமணிய பாரதியின் வாழ்க்கை மற்றும் படைப்புகள்.' } },
@@ -195,7 +195,7 @@ const allCourses: Course[] = [
   {
     id: '12-english', grade: 12, subject: 'English', title: { en: 'English', ta: 'ஆங்கிலம்' }, icon: 'fa-book-open',
     lessons: [
-      { id: '12e-l1', title: { en: 'Two Gentlemen of Verona', ta: 'வெரோனாவின் இரண்டு பண்பாளர்கள்' }, videoId: 'BfXyV9-6bOI', resources: [], description: { en: 'A story of brotherhood and sacrifice.', ta: 'சகோதரத்துவம் மற்றும் தியாகத்தின் கதை.' } },
+      { id: '12e-l1', title: { en: 'Two Gentlemen of Verona', ta: 'வெரோனாவின் இரண்டு பண்பாளர்கள்' }, videoId: 'zG8tK52d5-o', resources: [], description: { en: 'A story of brotherhood and sacrifice.', ta: 'சகோதரத்துவம் மற்றும் தியாகத்தின் கதை.' } },
       { id: '12e-l2', title: { en: 'Poem: The Castle', ta: 'கவிதை: கோட்டை' }, videoId: 'gM5-04Ma4kQ', resources: [], description: { en: 'An allegorical poem by Edwin Muir.', ta: 'எட்வின் முயரின் ஒரு உருவகக் கவிதை.' } },
       { id: '12e-l3', title: { en: 'Grammar: Modals', ta: 'இலக்கணம்: துணைவினைச்சொற்கள்' }, videoId: 'q-REtT35u-0', resources: [], description: { en: 'Understanding the use of modal auxiliary verbs.', ta: 'துணைவினைச்சொற்களின் பயன்பாட்டைப் புரிந்துகொள்வது.' } },
       { id: '12e-l4', title: { en: 'Prose: A Nice Cup of Tea', ta: 'உரைநடை: ஒரு நல்ல கப் தேநீர்' }, videoId: 'm4uA6Py_42c', resources: [], description: { en: 'An essay by George Orwell on making the perfect tea.', ta: 'சரியான தேநீர் தயாரிப்பது குறித்த ஜார்ஜ் ஆர்வெல்லின் கட்டுரை.' } },
@@ -216,7 +216,7 @@ const allCourses: Course[] = [
     id: '12-physics', grade: 12, subject: 'Physics', title: { en: 'Physics', ta: 'இயற்பியல்' }, icon: 'fa-atom',
     lessons: [
       { id: '12p-l1', title: { en: 'Electrostatics', ta: 'நிலைமின்னியல்' }, videoId: 'b-gUK6V_Y-c', resources: [], description: { en: 'Electric charge, field, and potential.', ta: 'மின்னூட்டம், மின்புலம் மற்றும் மின்னழுத்தம்.' } },
-      { id: '12p-l2', title: { en: 'Current Electricity', ta: 'மின்னோட்டவியல்' }, videoId: 'b-gUK6V_Y-c', resources: [], description: { en: 'Ohm\'s law, Kirchhoff\'s laws, and electrical devices.', ta: 'ஓம் விதி, கிர்ச்சாஃப் விதிகள் மற்றும் மின்சாதனங்கள்.' } },
+      { id: '12p-l2', title: { en: 'Current Electricity', ta: 'மின்னோட்டவியல்' }, videoId: 'eotOqD48F-E', resources: [], description: { en: 'Ohm\'s law, Kirchhoff\'s laws, and electrical devices.', ta: 'ஓம் விதி, கிர்ச்சாஃப் விதிகள் மற்றும் மின்சாதனங்கள்.' } },
       { id: '12p-l3', title: { en: 'Electromagnetic Induction', ta: 'மின்காந்தத் தூண்டல்' }, videoId: 'e-g2fB2I2-Y', resources: [], description: { en: 'Faraday\'s laws, Lenz\'s law, and AC generator.', ta: 'பாரடே விதிகள், லென்ஸ் விதி மற்றும் AC ஜெனரேட்டர்.' } },
       { id: '12p-l4', title: { en: 'Optics', ta: 'ஒளியியல்' }, videoId: '98204-Tf2wg', resources: [], description: { en: 'Reflection, refraction, interference, and diffraction.', ta: 'பிரதிபலிப்பு, ஒளிவிலகல், குறுக்கீட்டு விளைவு மற்றும் விளிம்பு விளைவு.' } },
       { id: '12p-l5', title: { en: 'Semiconductor Electronics', ta: 'குறைக்கடத்தி மின்னணுவியல்' }, videoId: 'Y-8IeAb_7Tk', resources: [], description: { en: 'p-n junction diodes and transistors.', ta: 'p-n சந்தி டயோடுகள் மற்றும் டிரான்சிஸ்டர்கள்.' } },
@@ -255,31 +255,31 @@ const allCourses: Course[] = [
    {
     id: '12-cs-app', grade: 12, subject: 'Computer Applications', title: { en: 'Computer Applications', ta: 'கணினி பயன்பாடுகள்' }, icon: 'fa-desktop',
     lessons: [
-      { id: '12csapp-l1', title: { en: 'PHP Basics', ta: 'PHP அடிப்படைகள்' }, videoId: 'zN8Yd_69f5s', resources: [], description: { en: 'Introduction to server-side scripting with PHP.', ta: 'PHP உடன் சர்வர் பக்க ஸ்கிரிப்டிங்கிற்கு அறிமுகம்.' } },
+      { id: '12csapp-l1', title: { en: 'PHP Basics', ta: 'PHP அடிப்படைகள்' }, videoId: 'OK_JCtrrv-c', resources: [], description: { en: 'Introduction to server-side scripting with PHP.', ta: 'PHP உடன் சர்வர் பக்க ஸ்கிரிப்டிங்கிற்கு அறிமுகம்.' } },
       { id: '12csapp-l2', title: { en: 'MySQL Database', ta: 'MySQL தரவுத்தளம்' }, videoId: 'E_63S3-x4Fk', resources: [], description: { en: 'Connecting PHP with MySQL databases.', ta: 'PHP ஐ MySQL தரவுத்தளங்களுடன் இணைத்தல்.' } },
       { id: '12csapp-l3', title: { en: 'Network Security', ta: 'நெட்வொர்க் பாதுகாப்பு' }, videoId: 'inWWhr5tnEA', resources: [], description: { en: 'Concepts of cryptography and cybersecurity.', ta: 'குறியாக்கவியல் மற்றும் சைபர் பாதுகாப்பு பற்றிய கருத்துக்கள்.' } },
-      { id: '12csapp-l4', title: { en: 'E-commerce', ta: 'மின்னணு வர்த்தகம்' }, videoId: 'OqK5K3BZS3o', resources: [], description: { en: 'Fundamentals of electronic commerce.', ta: 'மின்னணு வர்த்தகத்தின் அடிப்படைகள்.' } },
-      { id: '12csapp-l5', title: { en: 'Web Development Frameworks', ta: 'வலை மேம்பாட்டு கட்டமைப்புகள்' }, videoId: 'S-71nAmTjEs', resources: [], description: { en: 'An overview of popular web frameworks.', ta: 'பிரபலமான வலை கட்டமைப்புகளின் கண்ணோட்டம்.' } },
+      { id: '12csapp-l4', title: { en: 'E-commerce', ta: 'மின்னணு வர்த்தகம்' }, videoId: '8iue9smc9iI', resources: [], description: { en: 'Fundamentals of electronic commerce.', ta: 'மின்னணு வர்த்தகத்தின் அடிப்படைகள்.' } },
+      { id: '12csapp-l5', title: { en: 'Web Development Frameworks', ta: 'வலை மேம்பாட்டு கட்டமைப்புகள்' }, videoId: 'yzL3Z0c17dI', resources: [], description: { en: 'An overview of popular web frameworks.', ta: 'பிரபலமான வலை கட்டமைப்புகளின் கண்ணோட்டம்.' } },
     ],
   },
   {
     id: '12-commerce', grade: 12, subject: 'Commerce', title: { en: 'Commerce', ta: 'வர்த்தகம்' }, icon: 'fa-chart-line',
     lessons: [
-      { id: '12com-l1', title: { en: 'Principles of Management', ta: 'மேலாண்மைத் தத்துவங்கள்' }, videoId: 'xI5I9Broc-8', resources: [], description: { en: 'Fayol\'s principles of management.', ta: 'ஃபயோலின் மேலாண்மைக் கோட்பாடுகள்.' } },
-      { id: '12com-l2', title: { en: 'Financial Markets', ta: 'நிதிச் சந்தைகள்' }, videoId: 'b_f0Q2VdAgM', resources: [], description: { en: 'Money market and capital market.', ta: 'பணச் சந்தை மற்றும் மூலதனச் சந்தை.' } },
-      { id: '12com-l3', title: { en: 'Marketing', ta: 'சந்தையியல்' }, videoId: 'R821e_w2a-Y', resources: [], description: { en: 'Functions of marketing and marketing mix.', ta: 'சந்தையியலின் செயல்பாடுகள் மற்றும் சந்தையியல் கலவை.' } },
-      { id: '12com-l4', title: { en: 'Consumer Protection', ta: 'நுகர்வோர் பாதுகாப்பு' }, videoId: 'Q_VY-3p8sGA', resources: [], description: { en: 'Consumer rights and responsibilities.', ta: 'நுகர்வோர் உரிமைகள் மற்றும் பொறுப்புகள்.' } },
-      { id: '12com-l5', title: { en: 'Entrepreneurship Development', ta: 'தொழில்முனைவோர் மேம்பாடு' }, videoId: 'uAzCa-c7-6s', resources: [], description: { en: 'Concept, functions, and role of an entrepreneur.', ta: 'தொழில்முனைவோரின் கருத்து, செயல்பாடுகள் மற்றும் பங்கு.' } },
+      { id: '12com-l1', title: { en: 'Principles of Management', ta: 'மேலாண்மைத் தத்துவங்கள்' }, videoId: 'N6p2-m0g-M4', resources: [], description: { en: 'Fayol\'s principles of management.', ta: 'ஃபயோலின் மேலாண்மைக் கோட்பாடுகள்.' } },
+      { id: '12com-l2', title: { en: 'Financial Markets', ta: 'நிதிச் சந்தைகள்' }, videoId: '1sEX3_mCjsw', resources: [], description: { en: 'Money market and capital market.', ta: 'பணச் சந்தை மற்றும் மூலதனச் சந்தை.' } },
+      { id: '12com-l3', title: { en: 'Marketing', ta: 'சந்தையியல்' }, videoId: '4EUnDidBYaE', resources: [], description: { en: 'Functions of marketing and marketing mix.', ta: 'சந்தையியலின் செயல்பாடுகள் மற்றும் சந்தையியல் கலவை.' } },
+      { id: '12com-l4', title: { en: 'Consumer Protection', ta: 'நுகர்வோர் பாதுகாப்பு' }, videoId: 'd2q8aL2P42s', resources: [], description: { en: 'Consumer rights and responsibilities.', ta: 'நுகர்வோர் உரிமைகள் மற்றும் பொறுப்புகள்.' } },
+      { id: '12com-l5', title: { en: 'Entrepreneurship Development', ta: 'தொழில்முனைவோர் மேம்பாடு' }, videoId: 'uHn5VIdq-4U', resources: [], description: { en: 'Concept, functions, and role of an entrepreneur.', ta: 'தொழில்முனைவோரின் கருத்து, செயல்பாடுகள் மற்றும் பங்கு.' } },
     ],
   },
   {
     id: '12-accountancy', grade: 12, subject: 'Accountancy', title: { en: 'Accountancy', ta: 'கணக்கியல்' }, icon: 'fa-file-invoice-dollar',
     lessons: [
-       { id: '12acc-l1', title: { en: 'Accounts of Not-for-Profit Organisation', ta: 'இலாப நோக்கமற்ற அமைப்புகளின் கணக்குகள்' }, videoId: 'LpcI6i95TfA', resources: [], description: { en: 'Preparation of financial statements for NPOs.', ta: 'NPO களுக்கான நிதிநிலை அறிக்கைகளைத் தயாரித்தல்.' } },
-       { id: '12acc-l2', title: { en: 'Partnership Accounts - Fundamentals', ta: 'கூட்டாண்மை கணக்குகள் - அடிப்படைகள்' }, videoId: 'CqJg-S-yS2I', resources: [], description: { en: 'Partnership deed and profit and loss appropriation.', ta: 'கூட்டாண்மை ஒப்பாவணம் மற்றும் இலாப நட்டப் பகிர்வு.' } },
-       { id: '12acc-l3', title: { en: 'Admission of a Partner', ta: 'கூட்டாளி சேர்ப்பு' }, videoId: 'R90Jbu41vSg', resources: [], description: { en: 'Goodwill treatment and revaluation of assets.', ta: 'நற்பெயர் கணக்கீடு மற்றும் சொத்துக்களை மறுமதிப்பீடு செய்தல்.' } },
-       { id: '12acc-l4', title: { en: 'Company Accounts', ta: 'நிறுமக் கணக்குகள்' }, videoId: 'FLntKgsb_fM', resources: [], description: { en: 'Issue of shares and debentures.', ta: 'பங்குகள் மற்றும் கடன் பத்திரங்களை வெளியிடுதல்.' } },
-       { id: '12acc-l5', title: { en: 'Ratio Analysis', ta: 'விகிதப் பகுப்பாய்வு' }, videoId: 'y-8O1DAffts', resources: [], description: { en: 'Liquidity, solvency, and profitability ratios.', ta: 'நீர்மை, தீர்வு மற்றும் இலாப விகிதங்கள்.' } },
+       { id: '12acc-l1', title: { en: 'Accounts of Not-for-Profit Organisation', ta: 'இலாப நோக்கமற்ற அமைப்புகளின் கணக்குகள்' }, videoId: 'gW20m2y3c44', resources: [], description: { en: 'Preparation of financial statements for NPOs.', ta: 'NPO களுக்கான நிதிநிலை அறிக்கைகளைத் தயாரித்தல்.' } },
+       { id: '12acc-l2', title: { en: 'Partnership Accounts - Fundamentals', ta: 'கூட்டாண்மை கணக்குகள் - அடிப்படைகள்' }, videoId: '3n7Y7rVV21A', resources: [], description: { en: 'Partnership deed and profit and loss appropriation.', ta: 'கூட்டாண்மை ஒப்பாவணம் மற்றும் இலாப நட்டப் பகிர்வு.' } },
+       { id: '12acc-l3', title: { en: 'Admission of a Partner', ta: 'கூட்டாளி சேர்ப்பு' }, videoId: 'q_hTq0K2Y6g', resources: [], description: { en: 'Goodwill treatment and revaluation of assets.', ta: 'நற்பெயர் கணக்கீடு மற்றும் சொத்துக்களை மறுமதிப்பீடு செய்தல்.' } },
+       { id: '12acc-l4', title: { en: 'Company Accounts', ta: 'நிறுமக் கணக்குகள்' }, videoId: 's_Dkl9z-0bM', resources: [], description: { en: 'Issue of shares and debentures.', ta: 'பங்குகள் மற்றும் கடன் பத்திரங்களை வெளியிடுதல்.' } },
+       { id: '12acc-l5', title: { en: 'Ratio Analysis', ta: 'விகிதப் பகுப்பாய்வு' }, videoId: 'gNfKb7oD-qI', resources: [], description: { en: 'Liquidity, solvency, and profitability ratios.', ta: 'நீர்மை, தீர்வு மற்றும் இலாப விகிதங்கள்.' } },
     ],
   },
 ];

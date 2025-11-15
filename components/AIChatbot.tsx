@@ -2,6 +2,7 @@ import React, { useState, useContext, useRef, useEffect } from 'react';
 import { AppContext } from '../App';
 import { getChatbotResponse } from '../services/geminiService';
 import Spinner from './Spinner';
+import APIKeyHelpModal from './APIKeyHelpModal';
 
 interface ChatMessage {
     role: 'user' | 'model';
@@ -13,6 +14,7 @@ const AIChatbot: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [userInput, setUserInput] = useState('');
     const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+    const [showApiKeyHelp, setShowApiKeyHelp] = useState(false);
     const context = useContext(AppContext);
     const chatBodyRef = useRef<HTMLDivElement>(null);
     
@@ -66,13 +68,26 @@ const AIChatbot: React.FC = () => {
                     <h3 className="font-bold text-white text-center">{language === 'en' ? 'Kalvi Nanban' : 'கல்வி நண்பன்'}</h3>
                 </header>
                 <div ref={chatBodyRef} className="flex-1 p-4 space-y-4 overflow-y-auto">
-                    {chatHistory.map((msg, index) => (
-                        <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                            <div className={`max-w-xs md:max-w-md lg:max-w-xs rounded-xl px-4 py-2 ${msg.role === 'user' ? 'bg-indigo-600 text-white rounded-br-none' : 'bg-slate-700 text-slate-200 rounded-bl-none'}`}>
-                                <p className="text-sm whitespace-pre-wrap">{msg.parts[0].text}</p>
+                    {chatHistory.map((msg, index) => {
+                        const isApiKeyError = msg.role === 'model' && msg.parts[0].text.startsWith('API_KEY_ERROR::');
+                        const messageText = isApiKeyError ? msg.parts[0].text.replace('API_KEY_ERROR::', '') : msg.parts[0].text;
+
+                        return (
+                            <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                                <div className={`max-w-xs md:max-w-md lg:max-w-xs rounded-xl px-4 py-2 ${msg.role === 'user' ? 'bg-indigo-600 text-white rounded-br-none' : 'bg-slate-700 text-slate-200 rounded-bl-none'}`}>
+                                    <p className="text-sm whitespace-pre-wrap">{messageText}</p>
+                                    {isApiKeyError && (
+                                        <button 
+                                            onClick={() => setShowApiKeyHelp(true)}
+                                            className="mt-3 w-full bg-yellow-500/20 text-yellow-300 text-xs font-bold py-1.5 px-3 rounded-lg border border-yellow-500/50 hover:bg-yellow-500/30 transition-colors"
+                                        >
+                                            {language === 'en' ? 'How to Fix?' : 'சரி செய்வது எப்படி?'}
+                                        </button>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                     {isLoading && (
                         <div className="flex justify-start">
                              <div className="max-w-xs md:max-w-md lg:max-w-xs rounded-xl px-4 py-2 bg-slate-700 text-slate-200 rounded-bl-none">
@@ -94,6 +109,7 @@ const AIChatbot: React.FC = () => {
                     </button>
                 </form>
             </div>
+            {showApiKeyHelp && <APIKeyHelpModal onClose={() => setShowApiKeyHelp(false)} />}
         </>
     );
 };

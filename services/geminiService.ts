@@ -6,8 +6,8 @@ import { Language, GeneratedQuestion } from '../types';
 // FIX: Per coding guidelines, the API key must be obtained from process.env.API_KEY.
 const API_KEY = process.env.API_KEY;
 
-// A more helpful error message for deployment issues.
-const API_KEY_ERROR_MESSAGE = "The Gemini API key has not been configured. To enable AI features, please set the API_KEY environment variable in your deployment settings.";
+// A more helpful error message for deployment issues, with a prefix for UI detection.
+const API_KEY_ERROR_MESSAGE = "API_KEY_ERROR::It looks like the Gemini API key isn't set up. This is needed for me to work! You can fix this in your deployment settings.";
 
 // Use a function to get the AI instance, initializing it only once.
 // This prevents the app from crashing on startup if the API key is missing.
