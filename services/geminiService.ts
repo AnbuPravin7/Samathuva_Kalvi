@@ -3,8 +3,11 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Language, GeneratedQuestion } from '../types';
 
-// FIX: Per coding guidelines, the API key must be obtained from process.env.API_KEY. This also resolves the TypeScript error.
+// FIX: Per coding guidelines, the API key must be obtained from process.env.API_KEY.
 const API_KEY = process.env.API_KEY;
+
+// A more helpful error message for deployment issues.
+const API_KEY_ERROR_MESSAGE = "The Gemini API key has not been configured. To enable AI features, please set the API_KEY environment variable in your deployment settings.";
 
 // Use a function to get the AI instance, initializing it only once.
 // This prevents the app from crashing on startup if the API key is missing.
@@ -41,7 +44,7 @@ const quizSchema = {
 
 export const explainSimply = async (topic: string, query: string, language: Language): Promise<string> => {
   const ai = getAi();
-  if(!ai) return "Gemini API key is not configured.";
+  if(!ai) return API_KEY_ERROR_MESSAGE;
   const langInstruction = language === 'ta' ? 'in simple Tamil' : 'in simple English';
   
   const prompt = `You are an expert teacher for first-generation learners in Tamil Nadu, India.
@@ -54,13 +57,13 @@ export const explainSimply = async (topic: string, query: string, language: Lang
     return response.text;
   } catch (error) {
     console.error("Error calling Gemini API for explanation:", error);
-    return language === 'en' ? "Sorry, I couldn't generate an explanation. Please try again." : "மன்னிக்கவும், என்னால் விளக்கத்தை உருவாக்க முடியவில்லை. மீண்டும் முயக்கவும்.";
+    return language === 'en' ? "Sorry, I couldn't generate an explanation. Please try again." : "மன்னிக்கவும், என்னால் விளக்கத்தை உருவாக்க முடியவில்லை. மீண்டும் முயலவும்.";
   }
 };
 
 export const generateQuizQuestion = async (topic: string, language: Language): Promise<GeneratedQuestion | string> => {
   const ai = getAi();
-  if(!ai) return "Gemini API key is not configured.";
+  if(!ai) return API_KEY_ERROR_MESSAGE;
   const langInstruction = language === 'ta' ? 'Tamil' : 'English';
 
   const prompt = `You are an expert teacher creating a single, high-quality multiple-choice practice question for a student in Tamil Nadu.
@@ -81,13 +84,13 @@ export const generateQuizQuestion = async (topic: string, language: Language): P
     return JSON.parse(jsonText) as GeneratedQuestion;
   } catch (error) {
     console.error("Error calling Gemini API for quiz question:", error);
-    return language === 'en' ? "Sorry, I couldn't generate a question. Please try again." : "மன்னிக்கவும், என்னால் ஒரு கேள்வியை உருவாக்க முடியவில்லை. மீண்டும் முயக்கவும்.";
+    return language === 'en' ? "Sorry, I couldn't generate a question. Please try again." : "மன்னிக்கவும், என்னால் ஒரு கேள்வியை உருவாக்க முடியவில்லை. மீண்டும் முயலவும்.";
   }
 };
 
 export const summarizeTopic = async (topic: string, language: Language): Promise<string> => {
   const ai = getAi();
-  if(!ai) return "Gemini API key is not configured.";
+  if(!ai) return API_KEY_ERROR_MESSAGE;
   const langInstruction = language === 'ta' ? 'in Tamil' : 'in English';
 
   const prompt = `You are an expert teacher helping a student revise.
@@ -100,13 +103,13 @@ export const summarizeTopic = async (topic: string, language: Language): Promise
     return response.text;
   } catch (error) {
     console.error("Error calling Gemini API for summary:", error);
-    return language === 'en' ? "Sorry, I couldn't generate a summary. Please try again." : "மன்னிக்கவும், என்னால் சுருக்கத்தை உருவாக்க முடியவில்லை. மீண்டும் முயக்கவும்.";
+    return language === 'en' ? "Sorry, I couldn't generate a summary. Please try again." : "மன்னிக்கவும், என்னால் சுருக்கத்தை உருவாக்க முடியவில்லை. மீண்டும் முயலவும்.";
   }
 };
 
 export const getChatbotResponse = async (chatHistory: { role: string, parts: { text: string }[] }[], language: Language): Promise<string> => {
     const ai = getAi();
-    if(!ai) return "Gemini API key is not configured.";
+    if(!ai) return API_KEY_ERROR_MESSAGE;
     const langInstruction = language === 'ta' ? 'Respond in Tamil.' : 'Respond in English.';
 
     const systemInstruction = `You are a friendly and motivational AI study buddy for a student in Tamil Nadu using the 'Samathuva Kalvi' app. Your name is 'Kalvi Nanban' (Education Friend).

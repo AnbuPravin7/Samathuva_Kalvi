@@ -83,7 +83,7 @@ const HomePage: React.FC<HomePageProps> = ({ courses, onCourseSelect, refs }) =>
           {language === 'en' ? 'Equal Education.' : 'சமத்துவக் கல்வி.'}
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-            {language === 'en' ? 'Unlimited Potential.' : 'வரம்பற்ற சாத்தியம்.'}
+            {language === 'en' ? 'Unlimited Potential.' : 'வரம்பற்ற ஆற்றல்.'}
           </span>
         </h1>
         <p className="max-w-2xl mx-auto mt-6 text-lg text-indigo-200 animate-fade-in" style={{ animationDelay: '200ms' }}>
@@ -98,10 +98,10 @@ const HomePage: React.FC<HomePageProps> = ({ courses, onCourseSelect, refs }) =>
       <section>
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            {language === 'en' ? `Welcome, ${user?.name || 'Student'}!` : `வருக, ${user?.name || 'மாணவர்'}!`}
+            {language === 'en' ? `Welcome, ${user?.name || 'Student'}!` : `வாருங்கள், ${user?.name || 'மாணவர்'}!`}
           </h2>
           <p className="text-indigo-300 mt-2">
-            {language === 'en' ? `Your subjects for Grade ${user?.grade}. Choose one to begin.` : `தரம் ${user?.grade}-க்கான உங்கள் பாடங்கள். தொடங்க ஒன்றைத் தேர்ந்தெடுக்கவும்.`}
+            {language === 'en' ? `Your subjects for Grade ${user?.grade}. Choose one to begin.` : `வகுப்பு ${user?.grade}-க்கான உங்கள் பாடங்கள். தொடங்க ஒன்றைத் தேர்ந்தெடுக்கவும்.`}
           </p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
@@ -143,7 +143,7 @@ const HomePage: React.FC<HomePageProps> = ({ courses, onCourseSelect, refs }) =>
       <section ref={refs.contactRef} className="pb-16">
         <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            {context?.language === 'en' ? 'Get In Touch' : 'தொடர்பு கொள்ளுங்கள்'}
+            {context?.language === 'en' ? 'Get In Touch' : 'தொடர்பு கொள்ள'}
             </h2>
             <p className="text-lg text-indigo-200">
             {context?.language === 'en' 
@@ -161,12 +161,12 @@ const HomePage: React.FC<HomePageProps> = ({ courses, onCourseSelect, refs }) =>
                     </div>
                 ) : (
                 <form onSubmit={handleContactSubmit} className="space-y-6">
-                    <h3 className="text-2xl font-bold text-white mb-4">{context?.language === 'en' ? 'Send a Message' : 'செய்தி அனுப்பு'}</h3>
+                    <h3 className="text-2xl font-bold text-white mb-4">{context?.language === 'en' ? 'Send a Message' : 'செய்தி அனுப்புக'}</h3>
                     <div><input type="text" placeholder={context?.language === 'en' ? 'Your Name' : 'உங்கள் பெயர்'} className="w-full px-4 py-3 bg-slate-900/70 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" required /></div>
                     <div><input type="email" placeholder={context?.language === 'en' ? 'Your Email' : 'உங்கள் மின்னஞ்சல்'} className="w-full px-4 py-3 bg-slate-900/70 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" required /></div>
                     <div><textarea rows={4} placeholder={context?.language === 'en' ? 'Your Message' : 'உங்கள் செய்தி'} className="w-full px-4 py-3 bg-slate-900/70 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" required></textarea></div>
                     <button type="submit" className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold py-3 px-4 rounded-lg hover:from-indigo-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300">
-                        {context?.language === 'en' ? 'Submit' : 'சமர்ப்பி'}
+                        {context?.language === 'en' ? 'Submit' : 'சமர்ப்பிக்கவும்'}
                     </button>
                 </form>
                 )}

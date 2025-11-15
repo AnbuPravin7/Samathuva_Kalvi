@@ -20,7 +20,7 @@ const AIChatbot: React.FC = () => {
         if(isOpen && chatHistory.length === 0) {
             const firstMessage = context?.language === 'en'
                 ? "Hello! I'm Kalvi Nanban, your AI study buddy. How can I help you today? I can motivate you or help create a study schedule!"
-                : "வணக்கம்! நான் கல்வி நண்பன், உங்கள் AI படிப்பு நண்பன். இன்று நான் உங்களுக்கு எப்படி உதவ முடியும்? நான் உங்களை ஊக்குவிக்கவோ அல்லது படிப்பு அட்டவணையை உருவாக்கவோ உதவ முடியும்!";
+                : "வணக்கம்! நான் கல்வி நண்பன், உங்களின் AI படிப்பு நண்பன். இன்று நான் உங்களுக்கு எப்படி உதவ முடியும்? நான் உங்களை ஊக்குவிக்கவோ அல்லது படிப்பு அட்டவணையை உருவாக்கவோ உதவ முடியும்!";
             setChatHistory([{ role: 'model', parts: [{ text: firstMessage }] }]);
         }
     }, [isOpen, context?.language, chatHistory.length]);
@@ -57,7 +57,7 @@ const AIChatbot: React.FC = () => {
             <button
                 onClick={() => setIsOpen(prev => !prev)}
                 className="chatbot-fab fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full shadow-2xl flex items-center justify-center text-white text-3xl transform hover:scale-110 transition-transform duration-300 z-50"
-                aria-label={language === 'en' ? 'Open AI Chatbot' : 'AI చాట్‌బాట్‌ను తెరవండి'}
+                aria-label={language === 'en' ? 'Open AI Chatbot' : 'AI உரையாடலைத் திற'}
             >
                 <i className={`fas ${isOpen ? 'fa-times' : 'fa-robot'}`}></i>
             </button>
@@ -86,7 +86,7 @@ const AIChatbot: React.FC = () => {
                         type="text"
                         value={userInput}
                         onChange={(e) => setUserInput(e.target.value)}
-                        placeholder={language === 'en' ? 'Ask me anything...' : 'என்னிடம் எதுவும் கேளுங்கள்...'}
+                        placeholder={language === 'en' ? 'Ask me anything...' : 'எதையும் கேட்கலாம்...'}
                         className="flex-1 px-4 py-2 bg-slate-900/70 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
                     />
                     <button type="submit" disabled={isLoading} className="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center text-white disabled:bg-indigo-800">

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Lesson } from '../types';
 import { AppContext } from '../App';
 import StudyBuddy from './StudyBuddy';
@@ -13,10 +13,28 @@ interface LessonViewProps {
 
 const LessonView: React.FC<LessonViewProps> = ({ lesson, courseTitle, onBack, completedLessons, onMarkLessonAsComplete }) => {
   const context = useContext(AppContext);
+  const [showPopAnimation, setShowPopAnimation] = useState(false);
+  // FIX: The useRef hook requires an initial value. Provide `undefined` as the initial value and update the type to allow for `undefined`.
+  const prevCompletedLessonsRef = useRef<string[] | undefined>(undefined);
+
+  const isCompleted = completedLessons.includes(lesson.id);
+
+  useEffect(() => {
+    const prevCompleted = prevCompletedLessonsRef.current?.includes(lesson.id) ?? false;
+    
+    if (!prevCompleted && isCompleted) {
+        setShowPopAnimation(true);
+        const timer = setTimeout(() => setShowPopAnimation(false), 500); // Animation duration
+        return () => clearTimeout(timer);
+    }
+    
+    prevCompletedLessonsRef.current = completedLessons;
+  }, [completedLessons, lesson.id, isCompleted]);
+
+
   if (!context) return null;
   const { language } = context;
 
-  const isCompleted = completedLessons.includes(lesson.id);
 
   return (
     <div className="animate-fade-in">
@@ -56,11 +74,11 @@ const LessonView: React.FC<LessonViewProps> = ({ lesson, courseTitle, onBack, co
                 >
                     {isCompleted ? (
                         <>
-                            <i className="fas fa-check-circle"></i>
-                            {language === 'en' ? 'Completed' : 'முடிந்தது'}
+                            <i className={`fas fa-check-circle ${showPopAnimation ? 'animate-checkmark-pop' : ''}`}></i>
+                            {language === 'en' ? 'Completed' : 'முடித்துவிட்டீர்கள்'}
                         </>
                     ) : (
-                        language === 'en' ? 'Mark as Completed' : 'முடித்ததாகக் குறி'
+                        language === 'en' ? 'Mark as Complete' : 'முடித்துவிட்டேன்'
                     )}
                 </button>
             </div>

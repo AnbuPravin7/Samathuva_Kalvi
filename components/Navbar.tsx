@@ -53,8 +53,8 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, showDashboard }) => {
         
         <nav className="hidden md:flex items-center gap-3 bg-slate-800/50 p-2 rounded-full border border-slate-700">
             <NavItem labelEn="Home" labelTa="முகப்பு" onClick={() => scrollToSection('home')} />
-            <NavItem labelEn="About Us" labelTa="பற்றி" onClick={() => scrollToSection('about')} />
-            <NavItem labelEn="Contact" labelTa="தொடர்பு" onClick={() => scrollToSection('contact')} />
+            <NavItem labelEn="About Us" labelTa="எங்களைப் பற்றி" onClick={() => scrollToSection('about')} />
+            <NavItem labelEn="Contact" labelTa="தொடர்புக்கு" onClick={() => scrollToSection('contact')} />
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-4">
@@ -81,8 +81,8 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, showDashboard }) => {
           <div className="md:hidden bg-slate-800/90 backdrop-blur-lg border-t border-slate-700 animate-fade-in py-4">
               <nav className="flex flex-col items-center gap-4">
                  <NavItem labelEn="Home" labelTa="முகப்பு" onClick={() => handleMobileNavClick('home')} />
-                 <NavItem labelEn="About Us" labelTa="பற்றி" onClick={() => handleMobileNavClick('about')} />
-                 <NavItem labelEn="Contact" labelTa="தொடர்பு" onClick={() => handleMobileNavClick('contact')} />
+                 <NavItem labelEn="About Us" labelTa="எங்களைப் பற்றி" onClick={() => handleMobileNavClick('about')} />
+                 <NavItem labelEn="Contact" labelTa="தொடர்புக்கு" onClick={() => handleMobileNavClick('contact')} />
               </nav>
           </div>
       )}

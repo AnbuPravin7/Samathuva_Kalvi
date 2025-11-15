@@ -105,12 +105,12 @@ const StudyBuddy: React.FC<StudyBuddyProps> = ({ lessonTopic }) => {
                     onClick={() => setShowAnswer(true)} 
                     className="mt-4 w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors"
                 >
-                    {language === 'en' ? 'Check Answer' : 'விடையைச் சரிபார்க்கவும்'}
+                    {language === 'en' ? 'Check Answer' : 'விடையைச் சரிபார்க்க'}
                 </button>
             )}
             {showAnswer && (
                 <div className={`mt-4 p-4 rounded-lg text-sm ${isCorrect ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
-                    <p className="font-bold">{isCorrect ? (language === 'en' ? 'Correct!' : 'சரியானது!') : (language === 'en' ? 'Incorrect' : 'தவறானது')}</p>
+                    <p className="font-bold">{isCorrect ? (language === 'en' ? 'Correct!' : 'சரி!') : (language === 'en' ? 'Incorrect' : 'தவறு')}</p>
                     <p className="mt-1 text-slate-300">{quizData.explanation}</p>
                 </div>
             )}
@@ -137,14 +137,14 @@ const StudyBuddy: React.FC<StudyBuddyProps> = ({ lessonTopic }) => {
     <div className="sticky top-24 bg-slate-800/50 backdrop-blur-md border border-white/10 p-5 rounded-2xl shadow-2xl">
       <h3 className="text-xl font-bold mb-1 flex items-center gap-3 text-indigo-300">
         <i className="fas fa-robot"></i>
-        {language === 'en' ? 'AI Study Buddy' : 'AI படிப்பு நண்பன்'}
+        {language === 'en' ? 'AI Study Buddy' : 'AI கல்வி நண்பன்'}
       </h3>
-      <p className="text-sm text-slate-400 mb-4">{language === 'en' ? 'Your personal AI assistant.' : 'உங்கள் தனிப்பட்ட AI உதவியாளர்.'}</p>
+      <p className="text-sm text-slate-400 mb-4">{language === 'en' ? 'Your personal AI assistant.' : 'உங்களின் தனிப்பட்ட AI உதவியாளர்.'}</p>
 
       <div className="flex bg-slate-700/50 rounded-xl p-1.5 mb-4 gap-1">
-        <ModeButton labelEn="Explain" labelTa="விளக்கவும்" targetMode="explain" />
+        <ModeButton labelEn="Explain" labelTa="விளக்கு" targetMode="explain" />
         <ModeButton labelEn="Quiz Me" labelTa="வினாடி வினா" targetMode="quiz" />
-        <ModeButton labelEn="Summarize" labelTa="சுருக்கம்" targetMode="summarize" />
+        <ModeButton labelEn="Summarize" labelTa="சுருக்கித் தருக" targetMode="summarize" />
       </div>
 
       {mode === 'explain' && (
@@ -152,21 +152,21 @@ const StudyBuddy: React.FC<StudyBuddyProps> = ({ lessonTopic }) => {
           <textarea
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder={language === 'en' ? 'e.g., "What is a vector?"' : 'எ.கா., "வெக்டர் என்றால் என்ன?"'}
+            placeholder={language === 'en' ? 'e.g., "What is a vector?"' : 'எ.கா., "திசையன் என்றால் என்ன?"'}
             className="w-full p-3 border border-slate-600 rounded-lg bg-slate-900/70 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
             rows={3}
           />
           <button onClick={handleExplain} disabled={isLoading || !query.trim()} className="w-full bg-indigo-600 text-white font-bold py-2.5 px-4 rounded-lg hover:bg-indigo-700 disabled:bg-indigo-800/50 disabled:cursor-not-allowed transition-colors">
-            {isLoading ? <Spinner /> : (language === 'en' ? 'Ask Buddy' : 'நண்பனிடம் கேள்')}
+            {isLoading ? <Spinner /> : (language === 'en' ? 'Ask Buddy' : 'நண்பனிடம் கேட்க')}
           </button>
         </div>
       )}
       
       {mode === 'quiz' && (
          <div className="animate-fade-in">
-            <p className="text-sm text-center text-slate-400 mb-3">{language === 'en' ? 'Generate a practice question on this topic.' : 'இந்தப் தலைப்பில் ஒரு பயிற்சி கேள்வியை உருவாக்கவும்.'}</p>
+            <p className="text-sm text-center text-slate-400 mb-3">{language === 'en' ? 'Generate a practice question on this topic.' : 'இந்த தலைப்பில் ஒரு பயிற்சி கேள்வியை உருவாக்கவும்.'}</p>
             <button onClick={handleGenerateQuiz} disabled={isLoading} className="w-full bg-indigo-600 text-white font-bold py-2.5 px-4 rounded-lg hover:bg-indigo-700 disabled:bg-indigo-800/50 transition-colors">
-                {isLoading ? <Spinner /> : (language === 'en' ? 'Generate Question' : 'கேள்வியை உருவாக்கு')}
+                {isLoading ? <Spinner /> : (language === 'en' ? 'Generate Question' : 'கேள்வியை உருவாக்குக')}
             </button>
          </div>
       )}
@@ -181,7 +181,7 @@ const StudyBuddy: React.FC<StudyBuddyProps> = ({ lessonTopic }) => {
                 : (response 
                     ? (language === 'en'
                         ? 'The summary is displayed below. Click Summarize again to regenerate.'
-                        : 'சுருக்கம் கீழே காட்டப்பட்டுள்ளது. மீண்டும் உருவாக்க, சுருக்கம் பொத்தானை மீண்டும் கிளிக் செய்யவும்.')
+                        : 'சுருக்கம் கீழே காட்டப்பட்டுள்ளது. மீண்டும் உருவாக்க, சுருக்கித் தருக பொத்தானை மீண்டும் கிளிக் செய்யவும்.')
                     : ''
                   )
               }
