@@ -43,7 +43,7 @@ const APIKeyHelpModal: React.FC<APIKeyHelpModalProps> = ({ onClose }) => {
 
           <div>
             <h3 className="font-bold text-indigo-300 mb-2">
-              {language === 'en' ? 'Step 2: Add Key to Vercel / Netlify' : 'படி 2: Vercel / Netlify-ல் കീயைச் சேர்க்கவும்'}
+              {language === 'en' ? 'Step 2: Add Key to your Environment' : 'படி 2: உங்கள் சூழலில் கீயைச் சேர்க்கவும்'}
             </h3>
             <p className="text-sm mb-2">
                 {language === 'en' 
@@ -53,15 +53,10 @@ const APIKeyHelpModal: React.FC<APIKeyHelpModalProps> = ({ onClose }) => {
             <div className="bg-slate-900/70 p-3 rounded-lg text-sm border border-slate-600">
                 <p>{language === 'en' ? 'Add a new variable with this exact name and your key as the value:' : 'இந்த சரியான பெயருடன் ஒரு புதிய மாறியைச் சேர்க்கவும் மற்றும் உங்கள் കീயை மதிப்பாகச் சேர்க்கவும்:'}</p>
                 <code className="block mt-2 font-mono bg-slate-700/50 p-2 rounded">
-                    <span className="text-red-400">Name:</span> VITE_API_KEY<br/>
+                    <span className="text-red-400">Name:</span> API_KEY<br/>
                     <span className="text-green-400">Value:</span> YOUR_API_KEY_HERE
                 </code>
             </div>
-            <p className="text-xs mt-2 text-yellow-400">
-                {language === 'en' 
-                    ? 'Important: The name must start with VITE_ for the app to access it.' 
-                    : 'முக்கியம்: செயலி இதை அணுகுவதற்கு பெயர் VITE_ என்று தொடங்க வேண்டும்.'}
-            </p>
           </div>
           
           <div>
