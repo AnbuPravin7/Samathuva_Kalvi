@@ -1,9 +1,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Language, GeneratedQuestion } from '../types';
 
-// FIX: Changed from import.meta.env.VITE_API_KEY to process.env.API_KEY to resolve TypeScript error and adhere to coding guidelines.
-const API_KEY = process.env.API_KEY;
-
 // A more helpful error message for deployment issues, with a prefix for UI detection.
 const API_KEY_ERROR_MESSAGE = "API_KEY_ERROR::It looks like the Gemini API key isn't set up. This is needed for me to work! You can fix this in your deployment settings.";
 
@@ -13,11 +10,12 @@ const getAi = (() => {
   let ai: GoogleGenAI | null = null;
   return () => {
     if (ai) return ai;
-    if (API_KEY) {
-      ai = new GoogleGenAI({ apiKey: API_KEY });
+    // FIX: Per coding guidelines, API key must be obtained from process.env.API_KEY.
+    // This also resolves the "Property 'env' does not exist on type 'ImportMeta'" error.
+    if (process.env.API_KEY) {
+      ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       return ai;
     }
-    // FIX: Update the warning message to reflect the correct variable name.
     console.warn("API_KEY environment variable not set. Gemini features will not work.");
     return null;
   };

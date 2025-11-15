@@ -43,12 +43,12 @@ const APIKeyHelpModal: React.FC<APIKeyHelpModalProps> = ({ onClose }) => {
 
           <div>
             <h3 className="font-bold text-indigo-300 mb-2">
-              {language === 'en' ? 'Step 2: Add Key to Vercel' : 'படி 2: Vercel-ல் കീயைச் சேர்க்கவும்'}
+              {language === 'en' ? 'Step 2: Add Key to Vercel / Netlify' : 'படி 2: Vercel / Netlify-ல் കീயைச் சேர்க்கவும்'}
             </h3>
             <p className="text-sm mb-2">
                 {language === 'en' 
-                    ? 'In your Vercel project dashboard, go to "Settings" > "Environment Variables".' 
-                    : 'உங்கள் Vercel திட்டத்தின் டாஷ்போர்டில், "Settings" > "Environment Variables" என்பதற்குச் செல்லவும்.'}
+                    ? 'In your deployment platform\'s dashboard (like Vercel or Netlify), go to your project\'s "Settings" and find "Environment Variables".' 
+                    : 'உங்கள் Vercel அல்லது Netlify திட்டத்தின் டாஷ்போர்டில், "Settings" > "Environment Variables" என்பதற்குச் செல்லவும்.'}
             </p>
             <div className="bg-slate-900/70 p-3 rounded-lg text-sm border border-slate-600">
                 <p>{language === 'en' ? 'Add a new variable with this exact name and your key as the value:' : 'இந்த சரியான பெயருடன் ஒரு புதிய மாறியைச் சேர்க்கவும் மற்றும் உங்கள் കീயை மதிப்பாகச் சேர்க்கவும்:'}</p>
@@ -59,8 +59,8 @@ const APIKeyHelpModal: React.FC<APIKeyHelpModalProps> = ({ onClose }) => {
             </div>
             <p className="text-xs mt-2 text-yellow-400">
                 {language === 'en' 
-                    ? 'Note: The name must start with VITE_ for the app to access it.' 
-                    : 'குறிப்பு: செயலி இதை அணுகுவதற்கு பெயர் VITE_ என்று தொடங்க வேண்டும்.'}
+                    ? 'Important: The name must start with VITE_ for the app to access it.' 
+                    : 'முக்கியம்: செயலி இதை அணுகுவதற்கு பெயர் VITE_ என்று தொடங்க வேண்டும்.'}
             </p>
           </div>
           
