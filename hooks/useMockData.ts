@@ -185,11 +185,11 @@ const allCourses: Course[] = [
    {
     id: '12-tamil', grade: 12, subject: 'Tamil', title: { en: 'Tamil', ta: 'தமிழ்' }, icon: 'fa-feather-alt',
     lessons: [
-      { id: '12t-l1', title: { en: 'Ilaiya Thagaimaikku', ta: 'இளைய தகைமைக்கு' }, videoId: 'Yw4pB4i_p2w', resources: [], description: { en: 'A poem addressing the youth.', ta: 'இளைஞர்களை நோக்கிய ஒரு கவிதை.' } },
+      { id: '12t-l1', title: { en: 'Ilaiya Thagaimaikku', ta: 'இளைய தகைமைக்கு' }, videoId: 'n0yA__-j5-M', resources: [], description: { en: 'A poem addressing the youth.', ta: 'இளைஞர்களை நோக்கிய ஒரு கவிதை.' } },
       { id: '12t-l2', title: { en: 'Grammar: Uyir, Mei Ezhuthukkal', ta: 'இலக்கணம்: உயிர், மெய் எழுத்துக்கள்' }, videoId: '2q076e-pyuY', resources: [], description: { en: 'Detailed study of vowels and consonants.', ta: 'உயிர் மற்றும் மெய் எழுத்துக்கள் பற்றிய விரிவான ஆய்வு.' } },
       { id: '12t-l3', title: { en: 'Kamba Ramayanam - Ayothya Kandam', ta: 'கம்ப ராமாயணம் - அயோத்தியா காண்டம்' }, videoId: 'Y9j2F_n4p3E', resources: [], description: { en: 'Exploring the Ayodhya chapter of Kambar\'s epic.', ta: 'கம்பரின் காவியத்தின் அயோத்தியா காண்டத்தை ஆராய்தல்.' } },
       { id: '12t-l4', title: { en: 'Prose: Paarathiyar', ta: 'உரைநடை: பாரதியார்' }, videoId: 'f5f0W_i_9m4', resources: [], description: { en: 'Life and works of the great poet Subramania Bharati.', ta: 'மகாகவி சுப்ரமணிய பாரதியின் வாழ்க்கை மற்றும் படைப்புகள்.' } },
-      { id: '12t-l5', title: { en: 'Thirukkural - Arathuppal', ta: 'திருக்குறள் - அறத்துப்பால்' }, videoId: '9g2nZ1a3pSo', resources: [], description: { en: 'Studying the section on virtue and righteousness.', ta: 'அறம் மற்றும் நீதி பற்றிய பகுதியை படித்தல்.' } },
+      { id: '12t-l5', title: { en: 'Thirukkural - Arathuppal', ta: 'திருக்குறள் - அறத்துப்பால்' }, videoId: 'hG-qU9v9JpQ', resources: [], description: { en: 'Studying the section on virtue and righteousness.', ta: 'அறம் மற்றும் நீதி பற்றிய பகுதியை படித்தல்.' } },
     ],
   },
   {

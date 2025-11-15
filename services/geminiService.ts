@@ -1,9 +1,7 @@
-
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { Language, GeneratedQuestion } from '../types';
 
-// FIX: Per coding guidelines, the API key must be obtained from process.env.API_KEY.
+// FIX: Changed from import.meta.env.VITE_API_KEY to process.env.API_KEY to resolve TypeScript error and adhere to coding guidelines.
 const API_KEY = process.env.API_KEY;
 
 // A more helpful error message for deployment issues, with a prefix for UI detection.
@@ -101,7 +99,8 @@ export const summarizeTopic = async (topic: string, language: Language): Promise
   try {
     const response = await ai.models.generateContent({ model, contents: prompt });
     return response.text;
-  } catch (error) {
+  } catch (error)
+ {
     console.error("Error calling Gemini API for summary:", error);
     return language === 'en' ? "Sorry, I couldn't generate a summary. Please try again." : "மன்னிக்கவும், என்னால் சுருக்கத்தை உருவாக்க முடியவில்லை. மீண்டும் முயலவும்.";
   }
