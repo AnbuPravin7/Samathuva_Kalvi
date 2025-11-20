@@ -10,10 +10,14 @@ const getAi = (() => {
   let ai: GoogleGenAI | null = null;
   return () => {
     if (ai) return ai;
-    // FIX: Per coding guidelines, API key must be obtained from process.env.API_KEY.
-    // This also resolves the "Property 'env' does not exist on type 'ImportMeta'" error.
-    if (process.env.API_KEY) {
-      ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    
+    // FIX: Safely check for process.env.API_KEY
+    // Accessing `process` directly can crash if the environment doesn't define it.
+    // We also need to ensure process.env exists, as some shims define process as {}
+    const apiKey = (typeof process !== 'undefined' && process.env) ? process.env.API_KEY : undefined;
+
+    if (apiKey) {
+      ai = new GoogleGenAI({ apiKey: apiKey });
       return ai;
     }
     console.warn("API_KEY environment variable not set. Gemini features will not work.");
@@ -50,7 +54,7 @@ export const explainSimply = async (topic: string, query: string, language: Lang
 
   try {
     const response = await ai.models.generateContent({ model, contents: prompt });
-    return response.text;
+    return response.text || '';
   } catch (error) {
     console.error("Error calling Gemini API for explanation:", error);
     return language === 'en' ? "Sorry, I couldn't generate an explanation. Please try again." : "மன்னிக்கவும், என்னால் விளக்கத்தை உருவாக்க முடியவில்லை. மீண்டும் முயலவும்.";
@@ -76,7 +80,8 @@ export const generateQuizQuestion = async (topic: string, language: Language): P
         responseSchema: quizSchema,
       }
     });
-    const jsonText = response.text.trim();
+    const jsonText = response.text?.trim();
+    if (!jsonText) throw new Error("Empty response");
     return JSON.parse(jsonText) as GeneratedQuestion;
   } catch (error) {
     console.error("Error calling Gemini API for quiz question:", error);
@@ -96,7 +101,7 @@ export const summarizeTopic = async (topic: string, language: Language): Promise
 
   try {
     const response = await ai.models.generateContent({ model, contents: prompt });
-    return response.text;
+    return response.text || '';
   } catch (error)
  {
     console.error("Error calling Gemini API for summary:", error);
@@ -130,7 +135,7 @@ export const getChatbotResponse = async (chatHistory: { role: string, parts: { t
                 systemInstruction
             }
         });
-        return response.text;
+        return response.text || '';
     } catch (error) {
         console.error("Error calling Gemini API for chatbot:", error);
         return language === 'en' ? "I'm having a little trouble connecting right now. Let's try again in a moment." : "இப்போது இணைப்பதில் எனக்கு ஒரு சிறிய சிக்கல் உள்ளது. ஒரு கணத்தில் மீண்டும் முயற்சிப்போம்.";

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
-import { AppContext } from '../App';
+import { AppContext } from '../context';
 import { getChatbotResponse } from '../services/geminiService';
 import Spinner from './Spinner';
 import APIKeyHelpModal from './APIKeyHelpModal';

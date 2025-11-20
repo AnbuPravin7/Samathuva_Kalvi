@@ -1,5 +1,5 @@
-import React, { useState, createContext, useMemo, useRef, useEffect } from 'react';
-import { Course, Lesson, Language, User, Grade } from './types';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
+import { Course, Lesson, Language, User } from './types';
 import { useMockData } from './hooks/useMockData';
 import { getUsers, saveUsers, getSession, setSession, clearSession } from './services/database';
 import Navbar from './components/Navbar';
@@ -9,14 +9,7 @@ import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
 import AIChatbot from './components/AIChatbot';
 import DashboardPage from './components/DashboardPage';
-
-type AppContextType = {
-  language: Language;
-  setLanguage: React.Dispatch<React.SetStateAction<Language>>;
-  user: User | null;
-};
-
-export const AppContext = createContext<AppContextType | null>(null);
+import { AppContext } from './context';
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Course } from '../types';
-import { AppContext } from '../App';
+import { AppContext } from '../context';
 
 // Re-usable component for course cards, now used inside HomePage
 const CourseCard: React.FC<{ course: Course; onCourseSelect: (course: Course) => void; index: number; }> = ({ course, onCourseSelect, index }) => {

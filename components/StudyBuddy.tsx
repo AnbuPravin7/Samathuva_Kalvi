@@ -1,6 +1,6 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import { explainSimply, generateQuizQuestion, summarizeTopic } from '../services/geminiService';
-import { AppContext } from '../App';
+import { AppContext } from '../context';
 import { GeneratedQuestion } from '../types';
 import Spinner from './Spinner';
 

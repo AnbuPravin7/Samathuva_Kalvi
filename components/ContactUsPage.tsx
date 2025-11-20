@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { AppContext } from '../App';
+import { AppContext } from '../context';
 
 const ContactUsPage: React.FC = () => {
   const context = useContext(AppContext);

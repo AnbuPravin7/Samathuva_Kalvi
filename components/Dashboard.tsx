@@ -1,8 +1,6 @@
-
 import React, { useContext } from 'react';
-// FIX: Removed Grade import as the GradeSelector component that used it has been removed.
 import { Course } from '../types';
-import { AppContext } from '../App';
+import { AppContext } from '../context';
 
 interface CourseCardProps {
   course: Course;
@@ -32,10 +30,6 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, onCourseSelect }) => {
   );
 };
 
-// FIX: Removed the GradeSelectorProps interface and GradeSelector component.
-// They were attempting to use `grade` and `setGrade` from AppContext, which are not provided,
-// causing the type errors. The application's design ties the grade to the logged-in user.
-
 
 interface DashboardProps {
   courses: Course[];
@@ -45,8 +39,6 @@ interface DashboardProps {
 const Dashboard: React.FC<DashboardProps> = ({ courses, onCourseSelect }) => {
   const context = useContext(AppContext);
   if (!context) return null;
-  // FIX: Destructured only `language` and `user` from context. `grade` and `setGrade`
-  // are not in AppContextType, which was the source of the error.
   const { language, user } = context;
   
   return (
@@ -59,8 +51,6 @@ const Dashboard: React.FC<DashboardProps> = ({ courses, onCourseSelect }) => {
             {language === 'en' ? 'Let\'s start learning. Choose a subject to begin.' : 'கற்கத் தொடங்குவோம். தொடங்க ஒரு பாடத்தைத் தேர்ந்தெடுக்கவும்.'}
         </p>
       </div>
-
-      {/* FIX: Removed the GradeSelector component usage as it depended on state not available in the context. */}
       
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
         {courses.map(course => (

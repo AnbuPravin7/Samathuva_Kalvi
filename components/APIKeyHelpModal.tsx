@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../App';
+import { AppContext } from '../context';
 
 interface APIKeyHelpModalProps {
   onClose: () => void;
@@ -24,7 +24,7 @@ const APIKeyHelpModal: React.FC<APIKeyHelpModalProps> = ({ onClose }) => {
           <p>
             {language === 'en'
               ? 'To enable the AI features, you need to provide your own Google Gemini API key. It\'s free and easy to get!'
-              : 'AI அம்சங்களை இயக்க, உங்கள் சொந்த Google Gemini API കീയെ வழங்க வேண்டும். இது இலவசம் மற்றும் எளிதாகப் பெறலாம்!'}
+              : 'AI அம்சங்களை இயக்க, உங்கள் சொந்த Google Gemini API கீയെ வழங்க வேண்டும். இது இலவசம் மற்றும் எளிதாகப் பெறலாம்!'}
           </p>
           
           <div>
@@ -34,10 +34,10 @@ const APIKeyHelpModal: React.FC<APIKeyHelpModalProps> = ({ onClose }) => {
             <p className="text-sm">
                 {language === 'en' 
                     ? 'Visit Google AI Studio, sign in with your Google account, and create a new API key.' 
-                    : 'Google AI Studio-க்குச் சென்று, உங்கள் Google கணக்கில் உள்நுழைந்து, புதிய API കീയെ உருவாக்கவும்.'}
+                    : 'Google AI Studio-க்குச் சென்று, உங்கள் Google கணக்கில் உள்நுழைந்து, புதிய API கீയെ உருவாக்கவும்.'}
             </p>
             <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="text-sm text-purple-400 hover:underline">
-              {language === 'en' ? 'Get API Key from Google AI Studio &rarr;' : 'Google AI Studio-லிருந்து API കീயைப் பெறுங்கள் &rarr;'}
+              {language === 'en' ? 'Get API Key from Google AI Studio &rarr;' : 'Google AI Studio-லிருந்து API கீயைப் பெறுங்கள் &rarr;'}
             </a>
           </div>
 
@@ -51,7 +51,7 @@ const APIKeyHelpModal: React.FC<APIKeyHelpModalProps> = ({ onClose }) => {
                     : 'உங்கள் Vercel அல்லது Netlify திட்டத்தின் டாஷ்போர்டில், "Settings" > "Environment Variables" என்பதற்குச் செல்லவும்.'}
             </p>
             <div className="bg-slate-900/70 p-3 rounded-lg text-sm border border-slate-600">
-                <p>{language === 'en' ? 'Add a new variable with this exact name and your key as the value:' : 'இந்த சரியான பெயருடன் ஒரு புதிய மாறியைச் சேர்க்கவும் மற்றும் உங்கள் കീயை மதிப்பாகச் சேர்க்கவும்:'}</p>
+                <p>{language === 'en' ? 'Add a new variable with this exact name and your key as the value:' : 'இந்த சரியான பெயருடன் ஒரு புதிய மாறியைச் சேர்க்கவும் மற்றும் உங்கள் கீயை மதிப்பாகச் சேர்க்கவும்:'}</p>
                 <code className="block mt-2 font-mono bg-slate-700/50 p-2 rounded">
                     <span className="text-red-400">Name:</span> API_KEY<br/>
                     <span className="text-green-400">Value:</span> YOUR_API_KEY_HERE

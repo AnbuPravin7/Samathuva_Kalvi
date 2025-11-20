@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Lesson } from '../types';
-import { AppContext } from '../App';
+import { AppContext } from '../context';
 import StudyBuddy from './StudyBuddy';
 
 interface LessonViewProps {
@@ -14,7 +14,6 @@ interface LessonViewProps {
 const LessonView: React.FC<LessonViewProps> = ({ lesson, courseTitle, onBack, completedLessons, onMarkLessonAsComplete }) => {
   const context = useContext(AppContext);
   const [showPopAnimation, setShowPopAnimation] = useState(false);
-  // FIX: The useRef hook requires an initial value. Provide `undefined` as the initial value and update the type to allow for `undefined`.
   const prevCompletedLessonsRef = useRef<string[] | undefined>(undefined);
 
   const isCompleted = completedLessons.includes(lesson.id);

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { User, Course } from '../types';
-import { AppContext } from '../App';
+import { AppContext } from '../context';
 
 interface DashboardPageProps {
   user: User;

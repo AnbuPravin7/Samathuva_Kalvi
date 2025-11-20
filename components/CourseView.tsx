@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Course, Lesson } from '../types';
-import { AppContext } from '../App';
+import { AppContext } from '../context';
 
 interface LessonItemProps {
   lesson: Lesson;

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { AppContext } from '../App';
+import { AppContext } from '../context';
 import { Language } from '../types';
 import Logo from './Logo';
 
